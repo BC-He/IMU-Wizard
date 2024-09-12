@@ -1,0 +1,54 @@
+body {
+    font-family: 'Ubuntu';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #101015; /* Dark background */
+    margin: 0;
+    color: #e0e0e0; /* Light text color */
+}
+
+#container {
+    text-align: center;
+    width: 80%;
+    padding: 20px;
+    background-color: #101015; /* Dark container background */
+    border: 2px solid #333; /* Dark border */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Darker shadow */
+}
+
+h1 {
+    color: #ffffff; /* White heading */
+}
+
+#data {
+    font-size: 1.2em;
+    color: #b0b0b0; /* Light gray text for data */
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #303b48; /* Darker blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #303b48; /* Darker blue on hover */
+}
+
+.parameter-value {
+    display: inline-block; /* Ensure block-level control of width */
+    min-width: 60px; /* Adjust this value to the expected width */
+    text-align: right; /* Align the text to the right for numbers */
+    padding: 0 5px; /* Add padding if needed for spacing */
+    color: #b8d1f8;
+    font-size: 1em;
+}
