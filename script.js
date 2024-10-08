@@ -4,7 +4,7 @@ const imuOutput = document.getElementById('IMU-output');
 let port;
 let reader;
 let roll = 0.0, pitch = 0.0, yaw = 0.0; // Array to store the parsed data
-
+let altitude = 0.0, azimuth = 0.0;
 async function connectToArduino() {
     try {
         // Request a port and open a connection
@@ -56,15 +56,38 @@ async function readLoop() {
 }
 
 function displayParsedData(jsonData) {
-    
-    roll = parseFloat(jsonData.roll);
-    pitch = parseFloat(jsonData.pitch);
-    yaw = parseFloat(jsonData.yaw);
+    if (jsonData.hasOwnProperty('btn1')) {
+        // Handle button press
+        if (jsonData.btn1 === true) {
+            console.log("Goto");
+            gotoData()
+            return;
+        }
+    }
+    else if (jsonData.hasOwnProperty('btn2')) {
+        // Handle button press
+        if (jsonData.btn2 === true) {
+            console.log("Sync");
+            syncData();
+            return;
+        }
+    }
+    roll = parseDouble(jsonData.roll);
+    pitch = parseDouble(jsonData.pitch);
+    yaw = parseDouble(jsonData.yaw);
+    azimuth = parseDouble(jsonData.azimuth);
+    altitude = parseDouble(jsonData.altitude);
+    yaw = parseDouble(jsonData.yaw);
     imuOutput.innerHTML = `
         <p><strong>Roll:</strong> <span class="parameter-value"> ${roll.toFixed(3)}</span> deg</p>
         <p><strong>Pitch:</strong> <span class="parameter-value">${pitch.toFixed(3)}</span> deg</p>
         <p><strong>Yaw:</strong> <span class="parameter-value"> ${yaw.toFixed(3)}</span> deg</p>
+        <p><strong>Azimuth:</strong> <span class="parameter-value"> ${azimuth.toFixed(3)}</span> deg</p>
+        <p><strong>Altitude:</strong> <span class="parameter-value"> ${altitude.toFixed(3)}</span> deg</p>
     `;
+}
+function parseDouble(value) {
+    return parseFloat(value) || 0.0;
 }
 // Event listeners for buttons
 connectButton.addEventListener('click', connectToArduino);

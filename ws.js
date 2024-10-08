@@ -22,8 +22,8 @@ ws.onmessage = event => {
     console.log(event.data);
     //document.getElementById("Log").innerHTML = arr.content;
     const info = arr.content.split(",");
-    az = parseFloat(info[0]);
-    alt = parseFloat(info[1]);
+    az = parseDouble(info[0]);
+    alt = parseDouble(info[1]);
     if (arr.cmd === "AzAlt") 
     {
         document.getElementById("az").innerHTML = `Az (deg): <span class="parameter-value">${az.toFixed(3)}</span>`;
